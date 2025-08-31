@@ -8,14 +8,15 @@ on:
 
 jobs:
     deploy:
-        runs-on: ubuntu-latest  # GitHub Actions Runner Images
+        runs-on: ubuntu-latest  
         steps:
             - name: Checkout code on runner machine
-            uses: actions/checkout@v4  # It will chekout you repository under workplace
-
+              uses: actions/checkout@v4 
+            
+            
             
             - name: Run some commands
-            run: |   # | For Run multiple command with diffrent lines
-             ls -al
-             whoami
-             pwd
+              run: |   # | For Run multiple command with diffrent lines
+                ls -al
+                whoami
+                pwd
