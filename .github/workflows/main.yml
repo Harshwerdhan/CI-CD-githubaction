@@ -27,7 +27,7 @@ jobs:
                 host: ${{secrets.EC2_HOST}}
                 username: ${{secrets.EC2_USERNAME}}
                 key: ${{secrets.EC2_SSH_KEY}}
-                port: 22
+                port: 22 # SCP uses port 22 by default
                 source: ./
                 target: /home/ubuntu/cicd_githubaction
 
@@ -39,4 +39,4 @@ jobs:
                 key: ${{secrets.EC2_SSH_KEY}}
                 port: 22
                 script: |
-                 sudo cp /home/ubuntu/cicd_githubaction/* /var/www/html
+                 sudo cp -r /home/ubuntu/cicd_githubaction/* /var/www/html
