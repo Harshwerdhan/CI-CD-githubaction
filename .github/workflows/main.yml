@@ -1,4 +1,5 @@
 
+# Intentation must be follow while typing
 name: Deploy to EC2
 
 on:
@@ -8,15 +9,26 @@ on:
 
 jobs:
     deploy:
-        runs-on: ubuntu-latest  
+        runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
-              uses: actions/checkout@v4 
-            
-            
+              uses: actions/checkout@v4  # It will chekout you repository under workplace
+
             
             - name: Run some commands
               run: |   # | For Run multiple command with diffrent lines
-                ls -al
-                whoami
-                pwd
+               ls -al
+               whoami
+               pwd
+
+            - name: Copy files to EC2
+              uses: appleboy/scp-action@v1  # It will securly copy using SCP protocol
+              with:
+                host: ${{secrets.EC2_HOST}}
+                username: ${{secrets.EC2_USERNAME}}
+                key: ${{secrets.EC2_SSH_KEY}}
+                port: 22
+                source: ./
+                target: /home/ubuntu/cicd_githubaction
+
+                
